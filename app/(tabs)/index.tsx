@@ -1,25 +1,23 @@
-import React, { useState, useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  SafeAreaView, 
-  KeyboardAvoidingView, 
-  Platform, 
-  Linking,
-  ScrollView,
-  RefreshControl,
-  Dimensions,
-  ActivityIndicator,
-  Alert
-} from 'react-native';
-import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import React, { useCallback, useState } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  KeyboardAvoidingView,
+  Linking,
+  Platform,
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 import { RecordingButton } from '@/components/RecordingButton';
 import { APP_CONFIG } from '@/constants/Config';
@@ -65,11 +63,11 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      <KeyboardAvoidingView 
+      <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.keyboardView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           bounces={true}
@@ -79,8 +77,8 @@ export default function HomeScreen() {
         >
           {/* Top Logo Section */}
           <View style={styles.header}>
-            <Image 
-              source={require('@/assets/images/mira-logo.webp')} 
+            <Image
+              source={require('@/assets/images/logo.png')}
               style={styles.logo}
               contentFit="contain"
             />
@@ -113,18 +111,18 @@ export default function HomeScreen() {
                   returnKeyType="send"
                   blurOnSubmit={false}
                 />
-                <TouchableOpacity 
-                  onPress={handleSendMessage} 
+                <TouchableOpacity
+                  onPress={handleSendMessage}
                   style={styles.sendIconButton}
                   disabled={!message.trim() || isSending}
                 >
                   {isSending ? (
                     <ActivityIndicator size="small" color="#FF0000" />
                   ) : (
-                    <Ionicons 
-                      name="send" 
-                      size={22} 
-                      color={message.trim() ? "#FF0000" : "#999"} 
+                    <Ionicons
+                      name="send"
+                      size={22}
+                      color={message.trim() ? "#FF0000" : "#999"}
                     />
                   )}
                 </TouchableOpacity>
@@ -136,9 +134,9 @@ export default function HomeScreen() {
               <TouchableOpacity onPress={handleCall} style={styles.footerButton}>
                 <Ionicons name="call" size={28} color="#000" />
               </TouchableOpacity>
-              
-              <TouchableOpacity 
-                onPress={() => router.push('/livechat')} 
+
+              <TouchableOpacity
+                onPress={() => router.push('/livechat')}
                 style={styles.footerButton}
               >
                 <Ionicons name="chatbubble" size={28} color="#000" />
